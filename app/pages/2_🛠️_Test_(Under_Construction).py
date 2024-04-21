@@ -6,7 +6,7 @@ def toggle_admin_mode():
     return st.sidebar.toggle('管理者モード (工事中)')
 
 def file_uploader():
-    uploaded_file = st.file_uploader("#### ①ファイルをアップロードしてください")
+    uploaded_file = st.file_uploader("#### Step1:ファイルをアップロードしてください")
     return uploaded_file
 
 
