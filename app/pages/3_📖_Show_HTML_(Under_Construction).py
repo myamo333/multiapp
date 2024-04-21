@@ -6,7 +6,6 @@ from st_aggrid import AgGrid
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 from st_aggrid.shared import GridUpdateMode
 
-
 def show_df(tab, tag, df):
     with tab:
         # 入力された文字列でフィルタリングを行う
@@ -30,13 +29,10 @@ def show_df(tab, tag, df):
                 update_mode=GridUpdateMode.SELECTION_CHANGED)
     return data
 
-def show_html(tab, data):
+def df_to_json(tab, data):
     with tab:
-        #data = show_df(tab, tag, df)
         if data["selected_rows"] is not None:
-            #st.dataframe(data["selected_rows"])
             json_data = data["selected_rows"].reset_index(drop=True).to_json(orient='records').replace("[","").replace("]","")
-            #st.json(json_data)
             return json_data
         
 
@@ -53,7 +49,6 @@ def json_to_html(tab, data, json_data, base_html):
             new_html = html_content.format(**json_dict)
             # 新しいHTMLを出力
             st.components.v1.html(new_html, height=600, scrolling=True)
-
 
 def main():
 
@@ -72,8 +67,8 @@ def main():
     data1 = show_df(tab1,tag, df1)
     data2 = show_df(tab2, tag, df2)
     
-    json_data1 = show_html(tab1, data1)
-    json_data2 = show_html(tab2, data2)
+    json_data1 = df_to_json(tab1, data1)
+    json_data2 = df_to_json(tab2, data2)
     json_to_html(tab1, data1,json_data1,'../test/bese_html/base_html.html')
 
 if __name__ == "__main__":
