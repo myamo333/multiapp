@@ -71,10 +71,10 @@ def main():
     tab1, tab2 = st.tabs(["Test tab", "Test tab2"])
 
     # 2つのデータフレームを作成
-    df1 = pd.read_csv('../test/output/data3.csv', dtype=str)
+    df1 = pd.read_csv('./test/output/data3.csv', dtype=str)
     df1 = move_columns_to_front(df1, ["Test R","Test Q"])
     #df1 = move_column_to_front(df1, "Test Q")
-    df2 = pd.read_csv('../test/output/data2.csv', dtype=str)
+    df2 = pd.read_csv('./test/output/data2.csv', dtype=str)
 
     #タブ1の処理
     with tab1:
@@ -84,7 +84,7 @@ def main():
             data1 = show_df(tag, df1)
             json_data1 = df_to_json(data1)
         with col2:
-            json_to_html(data1,json_data1,'../test/bese_html/base_html.html')
+            json_to_html(data1,json_data1,'./test/bese_html/base_html.html')
 
     #タブ2の処理
     with tab2:
