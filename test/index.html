@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <style>
+        /* CSS スタイルをここに定義 */
+        .kanban {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .column {
+            width: 20%;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            background-color: lightgreen;
+        }
+        .card {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="kanban">
+    <div class="column">
+        <h2>To Do</h2>
+        <div class="card">Task 1</div>
+        <div class="card">Task 2</div>
+    </div>
+    <div class="column">
+        <h2>In Progress</h2>
+        <div class="card">Task 3</div>
+    </div>
+    <div class="column">
+        <h2>Done</h2>
+        <div class="card">Task 4</div>
+        <div class="card">Task 5</div>
+    </div>
+</div>
+
+</body>
+</html>

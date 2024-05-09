@@ -9,7 +9,7 @@ def main():
     utils.setup_page("Hello", "# Welcome to Streamlit! 👋", "👋")
     st.sidebar.success("Select a demo above.") 
     utils.show_markdown('./app/docs/Home_Page_description.md')
-    st.snow()
+    #st.snow()
     sac.divider(label='Home Page', icon='house', align='center', color='gray')
     sac.rate(label='Give a Rating!', value=3.0, align='left')
     sac.buttons([
