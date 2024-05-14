@@ -1,0 +1,5 @@
+{
+    "name": "Web app Project",
+    "dockerFile": "Dockerfile",
+    "postCreateCommand": "pip install -r requirement.txt"
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <style>
+        /* CSS スタイルをここに定義 */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .kanban-container {
+            display: flex;
+            justify-content: space-around;
+        }
+        .column {
+            width: 30%;
+            min-width: 200px;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .ticket {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="kanban-container">
+    <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>To Do</h2>
+        <div class="ticket" id="task1" draggable="true" ondragstart="drag(event)">Task 1</div>
+        <div class="ticket" id="task2" draggable="true" ondragstart="drag(event)">Task 2</div>
+    </div>
+    <div class="column" id="in-progress" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>In Progress</h2>
+    </div>
+    <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Done</h2>
+    </div>
+</div>
+
+<script>
+    // JavaScript 部分
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+    
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+    
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+        saveState();
+    }
+
+    function saveState() {
+        var columns = document.querySelectorAll('.column');
+        var boardState = {};
+
+        columns.forEach(function(column) {
+            var columnId = column.id;
+            var tasks = [];
+            var tickets = column.querySelectorAll('.ticket');
+            tickets.forEach(function(ticket) {
+                tasks.push(ticket.id);
+            });
+            boardState[columnId] = tasks;
+        });
+
+        localStorage.setItem('kanbanBoardState', JSON.stringify(boardState));
+    }
+
+    function loadState() {
+        var savedState = localStorage.getItem('kanbanBoardState');
+        if (savedState) {
+            var boardState = JSON.parse(savedState);
+            for (var columnId in boardState) {
+                var column = document.getElementById(columnId);
+                if (column) {
+                    var tasks = boardState[columnId];
+                    tasks.forEach(function(taskId) {
+                        var task = document.getElementById(taskId);
+                        if (task) {
+                            column.appendChild(task);
+                        }
+                    });
+                }
+            }
+        }
+    }
+
+    // ページロード時に保存された状態を読み込む
+    window.onload = function() {
+        loadState();
+    };
+</script>
+
+</body>
+</html>

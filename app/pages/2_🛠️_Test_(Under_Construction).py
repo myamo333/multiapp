@@ -48,7 +48,7 @@ def main():
     uploaded_file =file_uploader()
     if  toggle_admin_mode():
         st.write("### 管理者モード (工事中)")
-        utils.show_html("./test/output/タグ1/test.html")
+        utils.show_html("./test/kanban.html")
     else:
         #test_lib_functions()
         tag = utils.select_tag(select_list, '#### ②タグを選択してください', "タグを選択もしくは入力してください")
