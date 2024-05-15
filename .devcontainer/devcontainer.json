@@ -1,5 +1,8 @@
 {
-    "name": "Web app Project",
-    "dockerFile": "Dockerfile",
-    "postCreateCommand": "pip install -r requirement.txt"
+    "name": "test-app-dev-container",
+    "dockerFile": "../Dockerfile",
+    "workspaceFolder": "/home/test",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/home/test,type=bind"
+    ]
 }

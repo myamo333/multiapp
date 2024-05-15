@@ -1,5 +1,0 @@
-streamlit==1.33.0
-streamlit-aggrid==1.0.3.post2
-streamlit-antd-components==0.3.2
-numpy
-pandas==2.0.1
