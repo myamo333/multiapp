@@ -1,6 +1,6 @@
 FROM python:3.9.19-slim
 
-WORKDIR /home/test/app
+WORKDIR /home/test/webapp
 
 COPY requirements.txt .
 
